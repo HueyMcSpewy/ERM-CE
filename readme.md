@@ -3,15 +3,16 @@
 </p>
 
 
-<h1 align="center">ERM | Emergency Response Management</h1>
+<h1 align="center">ERM CE | Emergency Response Management Community edition</h1>
 
-<p align="center">Emergency Response Management (ERM for short) is a bot designed for servers within the Roblox roleplay community. This repository contains all necessary information and resources for the bot. </p>
+<p align="center">Emergency Response Management Community edition (ERM CE for short) is a bot designed for servers within the Roblox roleplay community. This repository contains all necessary information and resources for the bot. This is a branch of the main [ERM repository]((https://github.com/mikeyerm/ERM)). </p>
 
 ## Essential Links
-- [Bot Invitation](https://canary.discord.com/api/oauth2/authorize?client_id=978662093408591912&permissions=8&scope=applications.commands%20bot)
-- [Support Server](https://discord.gg/FAC629TzBy)
-- [Official Website](https://ermbot.xyz/)
-- [Desktop Download](https://ermbot.xyz/download)
+- [Bot Invitation](https://canary.discord.com/api/oauth2/authorize?client_id=978662093408591912&permissions=8&scope=applications.commands%20bot](https://discord.com/oauth2/authorize?client_id=1439512432665169961)
+- [Support DM HueyMcSpewy]( 
+- [Website( WORK ON PROGRESS )](https://ermce.hueymcspewy.online)
+
+ERM by Mikeyerm, licensed under CC BY-NC-SA 3.0
 
 ## Licensing
 ERM is licensed under the Attribution-NonCommercial-ShareAlike (CC BY-NC-SA) license. This license allows for the copy, distribution, and creation of adaptations of the material for non-commercial purposes, as long as proper attribution is given to the original creator and any adaptations are licensed under the same terms.
@@ -26,3 +27,4 @@ The CC BY-NC-SA license requires the following elements:
 
 [![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/insx.svg)](https://uptime.betterstack.com/?utm_source=status_badge)
 [![CodeFactor](https://www.codefactor.io/repository/github/mikeyusersrec/erm/badge)](https://www.codefactor.io/repository/github/mikeyusersrec/erm)
+
