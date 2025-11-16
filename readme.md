@@ -8,9 +8,9 @@
 <p align="center">Emergency Response Management Community edition (ERM CE for short) is a bot designed for servers within the Roblox roleplay community. This repository contains all necessary information and resources for the bot. This is a branch of the main [ERM repository]((https://github.com/mikeyerm/ERM)). </p>
 
 ## Essential Links
-- [Bot Invitation](https://discord.com/oauth2/authorize?client_id=1439512432665169961](https://discord.com/oauth2/authorize?client_id=1439512432665169961)
+- [Bot Invitation](https://discord.com/oauth2/authorize?client_id=1439512432665169961)
 - [Support DM HueyMcSpewy](https://discord.com/users/881062877526654987)
-- [Website( WORK ON PROGRESS )](https://ermce.hueymcspewy.online)
+- [Website ( WORK ON PROGRESS )](https://ermce.hueymcspewy.online)
 
 ERM by Mikeyerm, licensed under CC BY-NC-SA 3.0
 
@@ -27,5 +27,6 @@ The CC BY-NC-SA license requires the following elements:
 
 [![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/insx.svg)](https://uptime.betterstack.com/?utm_source=status_badge)
 [![CodeFactor](https://www.codefactor.io/repository/github/mikeyusersrec/erm/badge)](https://www.codefactor.io/repository/github/mikeyusersrec/erm)
+
 
 
