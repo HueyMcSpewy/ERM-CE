@@ -694,6 +694,28 @@ credentials_dict = {
     "client_x509_cert_url": config("CLIENT_X509_CERT_URL", default=""),
 }
 
+class ServerCountStatus(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.update_status.start()
+
+    @tasks.loop(minutes=5)  # updates every 5 minutes (you can change it)
+    async def update_status(self):
+        await self.bot.wait_until_ready()
+        guild_count = len(self.bot.guilds)
+        await self.bot.change_presence(
+            activity=discord.Activity(
+                type=discord.ActivityType.watching,
+                name=f"{guild_count} servers"
+            )
+        )
+
+    @update_status.before_loop
+    async def before_update(self):
+        await self.bot.wait_until_ready()
+
+async def setup(bot):
+    await bot.add_cog(ServerCountStatus(bot))
 
 def run():
     sentry_sdk.init(
@@ -716,4 +738,5 @@ def run():
 
 if __name__ == "__main__":
     run()
+
 
