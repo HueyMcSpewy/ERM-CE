@@ -283,7 +283,7 @@ class Bot(commands.AutoShardedBot):
             if environment == "DEVELOPMENT":
                 pass
                 # await bot.tree.sync(guild=discord.Object(id=1403328821121388674))
-            elif environment == "CUSTOM":
+            elif environment == "PRODUCTION":
                 await self.tree.sync()
                 # Prevent auto syncing
                 # await bot.tree.sync()
