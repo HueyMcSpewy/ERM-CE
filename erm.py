@@ -77,6 +77,8 @@ from utils.utils import *
 from utils.constants import *
 import utils.prc_api
 
+global_sync_answer = input("Do you want to globally sync commands to all servers? (y/n): ").strip().lower()
+GLOBAL_SYNC = global_sync_answer == "y"
 
 _global_fetch_semaphore = asyncio.Semaphore(45)
 _fetch_delays = defaultdict(float)
@@ -150,6 +152,14 @@ class Bot(commands.AutoShardedBot):
             return await super().is_owner(user)
         else:
             return False
+
+    async def _background_global_sync(self):
+        try:
+            await self.wait_until_ready()
+            await self.tree.sync()
+            logging.info("✅ Commands forcibly synced globally!")
+        except Exception as e:
+            logging.error(f"Failed to globally sync commands: {e}")
 
     async def setup_hook(self) -> None:
         self.external_http_sessions: list[aiohttp.ClientSession] = []
@@ -739,6 +749,7 @@ def run():
 
 if __name__ == "__main__":
     run()
+
 
 
 
