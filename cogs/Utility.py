@@ -18,6 +18,12 @@ from erm import is_staff, is_management
 
 
 class Utility(commands.Cog):
+   # Fix all import group commands
+import_group: app_commands.Group = app_commands.Group(
+    name="import",
+    description="Commands for importing data"
+)
+
     def __init__(self, bot):
         self.bot = bot
         # Do NOT use await here
@@ -446,6 +452,7 @@ class Utility(commands.Cog):
 
 async def setup(bot):
     await bot.add_cog(Utility(bot))
+
 
 
 
