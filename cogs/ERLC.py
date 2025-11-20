@@ -106,7 +106,7 @@ class ERLC(commands.Cog):
             return await ctx.send(
                 embed=discord.Embed(
                     title="Server Not Found",
-                    description="We could not find a server you own under the server name provided. Make sure you are linked with ERM by running `/link` in any server.",
+                    description="We could not find a server you own under the server name provided. Make sure you are linked with ERM CE by running `/link` in any server.",
                     color=BLANK_COLOR,
                 )
             )
@@ -940,7 +940,7 @@ class ERLC(commands.Cog):
             )
 
     @server.command(
-        name="message", description="Send a Message to your ER:LC server with ERM!"
+        name="message", description="Send a Message to your ER:LC server with ERM CE!"
     )
     @is_staff()
     @is_server_linked()
@@ -997,7 +997,7 @@ class ERLC(commands.Cog):
 
     @server.command(
         name="link",
-        description="Link your ER:LC server with ERM!",
+        description="Link your ER:LC server with ERM CE!",
         extras={"ignoreDefer": True},
     )
     @is_management()
@@ -1038,7 +1038,7 @@ class ERLC(commands.Cog):
 
     @server.command(
         name="unlink",
-        description="Unlink your ER:LC server from ERM!",
+        description="Unlink your ER:LC server from ERM CE!",
     )
     @is_management()
     @is_server_linked()
