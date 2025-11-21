@@ -260,7 +260,7 @@ class OnCommandError(commands.Cog):
                 await ctx.reply(
                     embed=discord.Embed(
                         title="Overflow Error",
-                        description="A user has inputted an arbitrary time amount of time into ERM and we were unable to display the requested data because of this. Please find the source of this, and remove the excess amount of time.",
+                        description="A user has inputted an arbitrary time amount of time into ERM CE and we were unable to display the requested data because of this. Please find the source of this, and remove the excess amount of time.",
                         color=BLANK_COLOR,
                     )
                 )
@@ -316,7 +316,7 @@ class OnCommandError(commands.Cog):
                 await ctx.send(
                     embed=discord.Embed(
                         title=f"{self.bot.emoji_controller.get_emoji('error')} Command Failure",
-                        description="The command you were attempting to run failed.\nContact ERM Support for assistance.",
+                        description="The command you were attempting to run failed.\nContact ERM CE Support for assistance.",
                         color=RED_COLOR,
                     ).add_field(name="Error ID", value=f"[`{error_id}`]({config('SENTRY_BASE_URL', default='') + error_link})", inline=False),
                     view=View().add_item(
@@ -330,4 +330,5 @@ class OnCommandError(commands.Cog):
 
 async def setup(bot):
     await bot.add_cog(OnCommandError(bot))
+
 
