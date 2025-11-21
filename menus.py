@@ -5161,15 +5161,15 @@ class AssociationConfigurationView(discord.ui.View):
                     if iterating_item.label == label:
                         item = iterating_item
             break
-            if use_configuration is None:
-                for index, defa in enumerate(defaults):
-                    if defa is None:
-                        defaults[index] = 0
-                # ---------------------------------
-                # NEW: Check if 'item' is a discord.ui.Select before assigning 'default_values'
-                if isinstance(item, discord.ui.Select):
-                    item.default_values = [i for i in defaults if i != 0]
-                # ---------------------------------
+                if use_configuration is None:
+                    for index, defa in enumerate(defaults):
+                        if defa is None:
+                            defaults[index] = 0
+                    # ---------------------------------
+                    # NEW: Check if 'item' is a discord.ui.Select before assigning 'default_values'
+                    if isinstance(item, discord.ui.Select):
+                        item.default_values = [i for i in defaults if i != 0]
+                    # ---------------------------------
             else:
                 found_values = []
                 for val in use_configuration["matchables"]:
