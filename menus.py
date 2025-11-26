@@ -12222,7 +12222,7 @@ class AccountLinkingMenu(discord.ui.View):
             "Romania",
             "America",
             "Germany",
-            "ERM",
+            "ERM CE",
             "Electricity",
         ]
 
