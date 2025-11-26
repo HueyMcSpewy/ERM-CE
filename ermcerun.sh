@@ -4,23 +4,15 @@
 # Exit if any command fails
 set -e
 
-# Ensure virtual environment exists
-if [ ! -f /erm-ce/venv/bin/activate ]; then
-    cd /erm-ce/
-    python3 -m venv venv
-fi
-
-# Ensure MongoDB container is running
-if ! docker ps --filter "name=mongo" --filter "status=running" | grep -q mongodb; then
-    echo "MongoDB container is not running. Please start it first."
-    exit 1
-fi
+# Change to project directory
+cd /erm-ce
 
 # Activate virtual environment
-source /erm-ce/venv/bin/activate
+source venv/bin/activate
 
 # Ensure logs directory exists
-mkdir -p /erm-ce/logs
+mkdir -p logs
 
 # Run the Python app (in foreground for systemd)
-echo "n" | python3 /erm-ce/main.py >> /erm-ce/logs/python.log 2>&1
+echo "n" | python3 main.py >> logs/python.log 2>&1
+
