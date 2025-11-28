@@ -22,7 +22,7 @@ class OnShiftEnd(commands.Cog):
         if not document:
             return
         shift: ShiftItem = await self.bot.shift_management.fetch_shift(object_id)
-
+'''
         url_var = config("BASE_API_URL")
         panel_url_var = config("PANEL_API_URL")
 
@@ -63,7 +63,7 @@ class OnShiftEnd(commands.Cog):
         except aiohttp.ClientError as e:
             self.logger.error(f"Failed to sync shift end with APIs: {str(e)}")
         except Exception as e:
-            self.logger.error(f"Unexpected error during end shift API sync: {str(e)}")
+            self.logger.error(f"Unexpected error during end shift API sync: {str(e)}")'''
 
         guild: discord.Guild = self.bot.get_guild(shift.guild)
         if guild is None:
