@@ -37,3 +37,4 @@ wget https://raw.githubusercontent.com/HueyMcSpewy/erm-ce/main/install.sh
 
 # Make it executable
 chmod +x install.sh
+./install.sh
