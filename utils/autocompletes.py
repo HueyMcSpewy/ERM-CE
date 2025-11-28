@@ -191,9 +191,15 @@ async def punishment_autocomplete(
     interaction: discord.Interaction, current: str
 ) -> typing.List[app_commands.Choice[str]]:
     bot = interaction.client
-    Data = await bot.punishment_types.find_by_id(interaction.guild.id)
-    default_punishments = ["Warning", "Kick", "Ban", "BOLO"]
-    enabled_punishments = Data.get("default_punishments", [])
+Data = await bot.punishment_types.find_by_id(interaction.guild.id)
+default_punishments = ["Warning", "Kick", "Ban", "BOLO"]
+
+# Check if there’s no data for this guild
+if Data is None:
+    return [app_commands.Choice(name=p, value=p) for p in default_punishments]
+
+# Now it’s safe to access Data
+enabled_punishments = Data.get("default_punishments", [])
     if Data is None:
         return [
             app_commands.Choice(name=item, value=item)
@@ -286,3 +292,4 @@ async def infraction_type_autocomplete(
             infraction_types.append(app_commands.Choice(name=name, value=name))
 
     return infraction_types[:25]  # Discord limits to max 25 choices
+
