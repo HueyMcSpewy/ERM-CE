@@ -16,5 +16,5 @@ source venv/bin/activate
 mkdir -p logs
 
 # Run the Python app (in foreground for systemd)
-echo "n" | python3 main.py >> logs/python.log 2>&1
+python3 main.py >> logs/python.log 2>&1
 
