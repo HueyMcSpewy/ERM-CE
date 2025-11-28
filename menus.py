@@ -6595,8 +6595,50 @@ class ShiftConfiguration(AssociationConfigurationView):
                 view=None,
             )
 
+class ERMCommandLog(AssociationConfigurationView):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-https://discord.com/oauth2/authorize?client_id=1443828009692823662
+        # Create ChannelSelect dynamically
+        erm_log_select = ChannelSelect(
+            placeholder="ERM CE Log Channel",  # Change placeholder safely here
+            row=0,
+            max_values=1,
+            min_values=0,
+            channel_types=[ChannelType.text]
+        )
+        # Assign callback manually
+        erm_log_select.callback = self.command_log_channel_select
+        # Add it to the view
+        self.add_item(erm_log_select)
+
+    async def command_log_channel_select(
+        self, interaction: Interaction, select: ChannelSelect
+    ):
+        # Optional check, keep your logic
+        value = await self.interaction_check(interaction)
+        if not value:
+            return
+
+        await interaction.response.defer()
+        guild_id = interaction.guild.id
+
+        bot = self.bot
+        sett = await bot.settings.find_by_id(guild_id)
+
+        try:
+            sett["staff_management"]["erm_log_channel"] = select.values[0].id
+        except KeyError:
+            sett["staff_management"] = {"erm_log_channel": select.values[0].id}
+
+        await bot.settings.update_by_id(sett)
+
+        await config_change_log(
+            bot,
+            interaction.guild,
+            interaction.user,
+            f"ERM Log Channel Set: <#{select.values[0].id}>",
+        )
 
 class RAConfiguration(AssociationConfigurationView):
     def __init__(self, *args, **kwargs):
