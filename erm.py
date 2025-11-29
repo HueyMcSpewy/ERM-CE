@@ -76,8 +76,7 @@ from utils.utils import *
 from utils.constants import *
 import utils.prc_api
 
-global_sync_answer = input("Do you want to globally sync commands to all servers? (y/n): ").strip().lower()
-GLOBAL_SYNC = global_sync_answer == "y"
+
 
 _global_fetch_semaphore = asyncio.Semaphore(45)
 _fetch_delays = defaultdict(float)
@@ -139,26 +138,10 @@ class Bot(commands.AutoShardedBot):
         await super().close()
 
     async def is_owner(self, user: discord.User):
-        # Only developers of the bot on the team should have
-        # full access to Jishaku commands. Hard-coded
-        # IDs are a security vulnerability.
+        # As Jishaku should be disabled, we'll just leave it disabled
+        return False
 
-        # Else fall back to the original
-        if user.id == 881062877526654987:
-            return True
 
-        if environment != "CUSTOM": # let's not allow custom bot owners to use jishaku lol 
-            return await super().is_owner(user)
-        else:
-            return False
-
-    async def _background_global_sync(self):
-        try:
-            await self.wait_until_ready()
-            await self.tree.sync()
-            logging.info("✅ Commands forcibly synced globally!")
-        except Exception as e:
-            logging.error(f"Failed to globally sync commands: {e}")
 
     async def setup_hook(self) -> None:
         self.external_http_sessions: list[aiohttp.ClientSession] = []
@@ -172,18 +155,8 @@ class Bot(commands.AutoShardedBot):
                 )
             )
             self.mongo = motor.motor_asyncio.AsyncIOMotorClient(str(mongo_url))
-            if environment == "DEVELOPMENT":
-                self.db = self.mongo["erm"]
-            elif environment == "PRODUCTION":
-                self.db = self.mongo["erm"]
-            elif environment == "ALPHA":
-                self.db = self.mongo["erm"]
-            elif environment == "CUSTOM":
-                self.db = self.mongo["erm"]
-            else:
-                raise Exception("Invalid environment")
-            
-
+            self.db = self.mongo["erm"]
+    
 
             self.panel_db = self.mongo["UserIdentity"]
             self.priority_settings = Document(self.panel_db, "PrioritySettings")
@@ -287,16 +260,9 @@ class Bot(commands.AutoShardedBot):
             await bot.load_extension("utils.hot_reload")
             # await bot.load_extension('utils.server')
 
-            if not bot.is_synced:  # check if slash commands have been synced
-                bot.tree.copy_global_to(guild=discord.Object(id=1403328821121388674))
-            if environment == "DEVELOPMENT":
-                pass
-                # await bot.tree.sync(guild=discord.Object(id=1403328821121388674))
-            elif environment == "PRODUCTION":
-                await self.tree.sync()
-                # Prevent auto syncing
-                # await bot.tree.sync()
-                # guild specific: leave blank if global (global registration can take 1-24 hours)
+
+            await self.tree.sync()
+
             bot.is_synced = True
 
             # we do this so the bot can get a cache of things before we spam discord with fetches
@@ -342,9 +308,6 @@ class Bot(commands.AutoShardedBot):
         check_whitelisted_car.start(bot)
         logging.info("Starting the Check Whitelisted Car task...")
         if self.environment != "CUSTOM":
-            await asyncio.sleep(30)
-            change_status.start(bot)
-        logging.info("Starting the Change Status task...")
         await asyncio.sleep(30)
         process_scheduled_pms.start(bot)
         logging.info("Starting the Process Scheduled PMs task...")
@@ -748,6 +711,8 @@ def run():
 
 if __name__ == "__main__":
     run()
+
+
 
 
 
