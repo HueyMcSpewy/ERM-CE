@@ -221,3 +221,4 @@ class ShiftManagement:
             {"UserID": member.id, "EndEpoch": 0, "Guild": guild_id}
         )
 
+
